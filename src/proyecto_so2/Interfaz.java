@@ -15,6 +15,7 @@ public class Interfaz extends javax.swing.JFrame {
      */
     public Interfaz() {
         initComponents();
+        appendTextArea();
     }
 
     /**
@@ -56,9 +57,9 @@ public class Interfaz extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void appendTextArea(String txt){
+    private void appendTextArea(){
     
-       ImprimirConsola.append(txt);
+     
         
     }
     

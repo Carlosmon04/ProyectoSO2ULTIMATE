@@ -2,12 +2,7 @@ package proyecto_so2;
 
 import java.util.Scanner;
 import java.util.concurrent.Semaphore;
-import proyecto_so2.Interfaz;
 
-/**
- *
- * @author Carlosmon04
- */
 public class Proyecto_SO2 {
     public static int maestros;
     public static int segundos;
@@ -16,16 +11,7 @@ public class Proyecto_SO2 {
         "Ruperegildo", "Eusebio", "Joaques", "Lexor", "Hanibal"
     };
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        
-        // TODO code application logic here
-
-        Interfaz x = new Interfaz();
-        x.setVisible(true);
-        
         Scanner leer = new Scanner(System.in);
         System.out.println("Antes de Empezar indica que tantos segundos quieres que tarden los filosofos en hacer acciones ");
         segundos = (leer.nextInt() * 1000);
@@ -41,21 +27,37 @@ public class Proyecto_SO2 {
             maestros = leer.nextInt();
         }
 
-        
         Semaphore tenedorSemaforo = new Semaphore(maestros - 1); // Controla acceso a los tenedores
 
         Tenedores[] cubiertos = new Tenedores[maestros];
         inicializarTenedores(cubiertos);
 
         Filosofos[] f = new Filosofos[maestros];
-        inicializarFilosofos(f, cubiertos,  tenedorSemaforo);
+        inicializarFilosofos(f, cubiertos, tenedorSemaforo);
 
         for (int j = 0; j < f.length; j++) {
             f[j].start();
-           
-            
-          
         }
+
+        // Esperar a que el usuario quiera detener la ejecución
+        System.out.println("Presione ENTER para detener la ejecución...");
+        leer.nextLine(); // Espera a que el usuario presione ENTER
+
+        // Detener todos los filósofos
+        for (int j = 0; j < f.length; j++) {
+            f[j].terminar();
+        }
+
+        // Esperar a que todos los hilos de los filósofos terminen
+        for (int j = 0; j < f.length; j++) {
+            try {
+                f[j].join(); // Esperar a que el hilo termine
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("Todos los filósofos han terminado.");
     }
 
     private static void inicializarTenedores(Tenedores[] cubiertos) {
@@ -70,8 +72,7 @@ public class Proyecto_SO2 {
     private static void inicializarFilosofos(Filosofos[] f, Tenedores[] cubiertos, Semaphore semaforo) {
         for (int k = 0; k < f.length; k++) {
             String nombre = nombresFilosofos[k];
-            f[k] = new Filosofos(k, cubiertos[k], cubiertos[(k + 1) % maestros],  nombre, semaforo, maestros);
+            f[k] = new Filosofos(k, cubiertos[k], cubiertos[(k + 1) % maestros], nombre, semaforo, maestros);
         }
     }
 }
-
