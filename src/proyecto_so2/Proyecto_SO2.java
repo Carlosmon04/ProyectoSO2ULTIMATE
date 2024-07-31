@@ -12,6 +12,8 @@ public class Proyecto_SO2 {
     };
 
     public static void main(String[] args) {
+        FilosofosSwing r = new FilosofosSwing();
+        r.setVisible(true);
         Scanner leer = new Scanner(System.in);
         System.out.println("Antes de Empezar indica que tantos segundos quieres que tarden los filosofos en hacer acciones ");
         segundos = (leer.nextInt() * 1000);
