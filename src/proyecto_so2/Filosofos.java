@@ -37,16 +37,22 @@ public class Filosofos extends Thread {
     }
 
     public void run() {
+        
         try {
             while (!haTerminado) {
                 pensar();
                 if (totalFilosofos > 1) {
                     semaforo.acquire();
+                     output.append(""
+                            + "");
                     tenedorIzquierdo.qTenedores(nombre);
                     tenedorDerecho.qTenedores(nombre);
+                   output.append("\n");
                     comer();
+                   output.append("\n");
                     tenedorDerecho.sTenedores(nombre);
                     tenedorIzquierdo.sTenedores(nombre);
+                   output.append("\n");
                     semaforo.release();
                 } else {
                     comer();
@@ -92,7 +98,7 @@ public class Filosofos extends Thread {
             contTerminado++;
             if (contTerminado == totalFilosofos) {
                 output.append("Todos Los Filosofos Comieron");
-                Thread.sleep(6000);
+                Thread.sleep(10000);
                 System.exit(0); // Finalizar la aplicación cuando todos los filósofos hayan terminado
             }
         }

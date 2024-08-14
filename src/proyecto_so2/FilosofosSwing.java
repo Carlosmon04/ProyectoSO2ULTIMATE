@@ -13,6 +13,7 @@ public class FilosofosSwing extends JFrame {
     private JButton btnIniciar;
     private JButton btnDetener;
     
+    
     private Semaphore tenedorSemaforo;
     private Filosofos[] filosofos;
     private Tenedores[] tenedores;
@@ -56,6 +57,7 @@ public class FilosofosSwing extends JFrame {
         panelBotones.add(btnIniciar);
         panelBotones.add(btnDetener);
         
+        
         txtOutput = new JTextArea();
         txtOutput.setEditable(false);
         txtOutput.setLineWrap(true);
@@ -63,9 +65,19 @@ public class FilosofosSwing extends JFrame {
         JScrollPane scrollPane = new JScrollPane(txtOutput);
         scrollPane.setPreferredSize(new Dimension(580, 250));
         
+       
+        JPanel r = new JPanel();
+        r.add(btnDetener);
+      
+        
         getContentPane().add(panelEntrada, BorderLayout.NORTH);
         getContentPane().add(panelBotones, BorderLayout.CENTER);
         getContentPane().add(scrollPane, BorderLayout.SOUTH);
+        getContentPane().add(r, BorderLayout.EAST);
+      
+
+       
+
     }
     
     private void iniciarSimulacion() {
@@ -151,17 +163,27 @@ public class FilosofosSwing extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 907, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(564, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(314, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,5 +225,6 @@ public class FilosofosSwing extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
