@@ -6,6 +6,7 @@ public class Plato {
     private int comida;
 
     public Plato() {
+        //aqui creo la cantidad de comida aleatoria de los platos de los FIlosofos
         Random rand = new Random();
         this.comida = rand.nextInt(10) + 1; // Cantidad de comida entre 1 y 10
     }

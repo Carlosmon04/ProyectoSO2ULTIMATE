@@ -20,6 +20,7 @@ public class FilosofosSwing extends JFrame {
     private boolean running = false;
     
     public FilosofosSwing() {
+        //creamos la INterfaz , solo es mostrar algo en un TextBox para que no se vea en consola
         setTitle("Simulación de Filósofos Comensales");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +50,8 @@ public class FilosofosSwing extends JFrame {
         btnDetener.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                detenerSimulacion();
+               // detenerSimulacion();
+               //Queria agreagar un boton de detener la simulacion en proceso pero queda frizado
             }
         });
         

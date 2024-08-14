@@ -29,6 +29,7 @@ public class Filosofos extends Thread {
     }
 
     public void setOutput(JTextArea output) {
+        //en este metodo, lo que imprimiria con un sout, se va mostrar en el TextBox
         this.output = output;
     }
 
@@ -43,19 +44,22 @@ public class Filosofos extends Thread {
                 pensar();
                 if (totalFilosofos > 1) {
                     semaforo.acquire();
-                     output.append(""
-                            + "");
+                    //Va agarrar los tenedores
                     tenedorIzquierdo.qTenedores(nombre);
                     tenedorDerecho.qTenedores(nombre);
                    output.append("\n");
+                   //Va a comer
                     comer();
                    output.append("\n");
+                   //Despues de Comer suelta dichos tenedores
                     tenedorDerecho.sTenedores(nombre);
                     tenedorIzquierdo.sTenedores(nombre);
                    output.append("\n");
                     semaforo.release();
+                    
                 } else {
                     comer();
+                    
                 }
                 Thread.sleep(delay); // Delay entre acciones
             }
@@ -67,6 +71,7 @@ public class Filosofos extends Thread {
 
     private void pensar() throws InterruptedException {
         if (output != null) {
+            //con append agrego al TextBox y con SetCaretPosition digo que lo diguiente se va escribir despues de lo ultimo, o sea que los msj seran contunuis
             output.append(nombre + " está pensando.\n");
             output.setCaretPosition(output.getDocument().getLength());
         }
@@ -98,7 +103,7 @@ public class Filosofos extends Thread {
             contTerminado++;
             if (contTerminado == totalFilosofos) {
                 output.append("Todos Los Filosofos Comieron");
-                Thread.sleep(10000);
+                Thread.sleep(1000000);
                 System.exit(0); // Finalizar la aplicación cuando todos los filósofos hayan terminado
             }
         }

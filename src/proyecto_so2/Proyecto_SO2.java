@@ -12,6 +12,7 @@ public class Proyecto_SO2 {
     };
 
     public static void main(String[] args) {
+        //Al principio tenemos validaciones y llamamos a nuestra interfaz
         FilosofosSwing r = new FilosofosSwing();
         r.setVisible(true);
         Scanner leer = new Scanner(System.in);
@@ -28,9 +29,9 @@ public class Proyecto_SO2 {
             System.out.println("Solo pueden participar de 1 a 10 Filosofos, Intente de nuevo ");
             maestros = leer.nextInt();
         }
-
+//con los semaforos controlamos el acceso a Tenedores para evitar inanicion e Interbloqueos
         Semaphore tenedorSemaforo = new Semaphore(maestros - 1); // Controla acceso a los tenedores
-
+// se mandan a llamar las clases e instanciamos arrelgos para poder ejecutar lo que deseamos
         Tenedores[] cubiertos = new Tenedores[maestros];
         inicializarTenedores(cubiertos);
 
@@ -41,14 +42,10 @@ public class Proyecto_SO2 {
             f[j].start();
         }
 
-        // Esperar a que el usuario quiera detener la ejecución
-        System.out.println("Presione ENTER para detener la ejecución...");
-        leer.nextLine(); // Espera a que el usuario presione ENTER
+       
+        leer.nextLine(); 
 
-        // Detener todos los filósofos
-        for (int j = 0; j < f.length; j++) {
-            f[j].terminar();
-        }
+   
 
         // Esperar a que todos los hilos de los filósofos terminen
         for (int j = 0; j < f.length; j++) {
