@@ -116,27 +116,7 @@ public class FilosofosSwing extends JFrame {
         }
     }
     
-    private void detenerSimulacion() {
-        if (!running) {
-            txtOutput.append("La simulación no está en ejecución.\n");
-            return;
-        }
-        
-        for (Filosofos f : filosofos) {
-            f.terminar();
-        }
-        
-        for (Filosofos f : filosofos) {
-            try {
-                f.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        
-        running = false;
-        txtOutput.append("Simulación detenida.\n");
-    }
+   
     
     private void inicializarTenedores(Tenedores[] tenedores) {
         for (int i = 0; i < tenedores.length; i++) {

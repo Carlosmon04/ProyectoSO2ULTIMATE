@@ -48,17 +48,22 @@ public class Filosofos extends Thread {
                     tenedorIzquierdo.qTenedores(nombre);
                     tenedorDerecho.qTenedores(nombre);
                    output.append("\n");
+                   output.setCaretPosition(output.getDocument().getLength());
                    //Va a comer
                     comer();
                    output.append("\n");
+                   output.setCaretPosition(output.getDocument().getLength());
                    //Despues de Comer suelta dichos tenedores
                     tenedorDerecho.sTenedores(nombre);
                     tenedorIzquierdo.sTenedores(nombre);
                    output.append("\n");
+                   output.setCaretPosition(output.getDocument().getLength());
                     semaforo.release();
                     
                 } else {
+                   
                     comer();
+                   
                     
                 }
                 Thread.sleep(delay); // Delay entre acciones
